@@ -1,0 +1,15 @@
+{
+  "name": "mydesignsystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.json",
+    "clean": "rm -rf build/tokens"
+  },
+  "author": "Garrett Schafer",
+  "license": "ISC",
+  "devDependencies": {
+    "style-dictionary": "^4.1.0"
+  }
+}

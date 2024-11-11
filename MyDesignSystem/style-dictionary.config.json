@@ -1,0 +1,34 @@
+{
+  "source": ["src/main/tokens/**/*.json"],
+  "platforms": {
+    "android-compose": {
+      "transformGroup": "compose",
+      "buildPath": "build/tokens/compose/",
+      "files": [
+        {
+          "destination": "MyDesignSystemColor.kt",
+          "format": "compose/object",
+          "options": {
+            "className": "MyDesignSystemColor",
+            "packageName": "MyDesignSystemColor"
+          },
+          "filter": {
+            "type": "color"
+          }
+        },
+        {
+          "destination": "MyDesignSystemSize.kt",
+          "format": "compose/object",
+          "options": {
+            "className": "MyDesignSystemSize",
+            "packageName": "MyDesignSystemSize",
+            "type": "float"
+          },
+          "filter": {
+            "type": "dimension"
+          }
+        }
+      ]
+    }
+  }
+}
