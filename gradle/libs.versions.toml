@@ -8,6 +8,7 @@ espressoCore = "3.5.1"
 appcompat = "1.6.1"
 material = "1.10.0"
 nodeGradle = "7.1.0"
+googleFonts = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -16,6 +17,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "googleFonts"}
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.06.00" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }

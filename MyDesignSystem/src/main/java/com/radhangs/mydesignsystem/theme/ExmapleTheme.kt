@@ -17,9 +17,10 @@ public class ExampleTheme (
 
 @OptIn(CoreTokensOptIn::class)
 public val LocalTheme: ProvidableCompositionLocal<ExampleTheme> = staticCompositionLocalOf {
+    val coreTokens = CoreTokens()
     ExampleTheme(
-        core = CoreTokens(),
-        theme = ExampleThemeTokens()
+        core = coreTokens,
+        theme = ExampleThemeTokens(coreTokens.colors)
     )
 }
 
@@ -28,7 +29,7 @@ public val LocalTheme: ProvidableCompositionLocal<ExampleTheme> = staticComposit
 public fun ExampleTheme(
     theme: ExampleTheme = ExampleTheme(
         core = CoreTokens(),
-        theme = ExampleThemeTokens()
+        theme = ExampleThemeTokens(CoreTokens().colors)
     ),
     content: @Composable () -> Unit
 ) {

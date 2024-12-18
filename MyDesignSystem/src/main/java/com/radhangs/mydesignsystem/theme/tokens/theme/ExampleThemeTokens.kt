@@ -1,26 +1,56 @@
 package com.radhangs.mydesignsystem.theme.tokens.theme
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.radhangs.mydesignsystem.theme.LocalTheme
+import com.radhangs.mydesignsystem.theme.tokens.core.CoreColorPalette
+import com.radhangs.mydesignsystem.theme.tokens.core.CoreColorTokens
+import robotoFont
 
 /**
  * New themes can easily be created following the contents of this file.
  * You could even go as far as reusing a lot of the dimensions and typography tokens or create
  * shared dimensions and typography tokens and just swap out colors for the different themes.
  */
-public class ExampleThemeTokens : ThemeTokensInterface {
-    override var colors: ThemeColorTokensInterface = ExampleThemeColorTokensLight()
+public class ExampleThemeTokens(coreColorTokens: CoreColorTokens) : ThemeTokensInterface {
+    override var colors: ThemeColorTokensInterface = ExampleThemeColorTokensLight(coreColorTokens)
     override var dimensions: ThemeDimensionTokensInterface = ExampleThemeDimensionTokens()
     override var typography: ThemeTypographyTokensInterface = ExampleThemeTypographyTokens()
 }
 
-public class ExampleThemeColorTokensLight : ThemeColorTokensInterface {
-
+public class ExampleThemeColorTokensLight(coreColorTokens: CoreColorTokens) : ThemeColorTokensInterface {
+    override var primaryBackground: Color = coreColorTokens.gray(5)
+    override var secondaryBackground: Color = coreColorTokens.gray(10)
+    override var tertiaryBackground: Color = coreColorTokens.gray(20)
+    override var primaryContent: Color = coreColorTokens.gray(100)
+    override var secondaryContent: Color = coreColorTokens.gray(80)
+    override var tertiaryContent: Color = coreColorTokens.gray(60)
+    override var primaryAccent: Color = coreColorTokens.blue(50)
+    override var secondaryAccent: Color = coreColorTokens.blue(40)
+    override var error: Color = coreColorTokens.red(50)
+    override var warning: Color = coreColorTokens.yellow(50)
+    override var success: Color = coreColorTokens.green(50)
+    override var info: Color = coreColorTokens.blue(40)
 }
 
-public class ExampleThemeColorTokensDark : ThemeColorTokensInterface {
-
+public class ExampleThemeColorTokensDark(coreColorTokens: CoreColorTokens) : ThemeColorTokensInterface {
+    override var primaryBackground: Color = coreColorTokens.gray(90)
+    override var secondaryBackground: Color = coreColorTokens.gray(80)
+    override var tertiaryBackground: Color = coreColorTokens.gray(70)
+    override var primaryContent: Color = coreColorTokens.gray(0)
+    override var secondaryContent: Color = coreColorTokens.gray(10)
+    override var tertiaryContent: Color = coreColorTokens.gray(30)
+    override var primaryAccent: Color = coreColorTokens.blue(40)
+    override var secondaryAccent: Color = coreColorTokens.blue(30)
+    override var error: Color = coreColorTokens.red(40)
+    override var warning: Color = coreColorTokens.yellow(40)
+    override var success: Color = coreColorTokens.green(40)
+    override var info: Color = coreColorTokens.blue(30)
 }
 
 public class ExampleThemeDimensionTokens : ThemeDimensionTokensInterface {
@@ -54,5 +84,54 @@ public class ExampleThemeElevationTokens : ThemeElevationTokensInterface {
 }
 
 public class ExampleThemeTypographyTokens : ThemeTypographyTokensInterface {
+    override val heading: ThemeHeadingTypographyTokensInterface = ExampleThemeHeadingTypographyTokens()
+    override val body: ThemeBodyTypographyTokensInterface = ExampleThemeBodyTypographyTokens()
+}
 
+public class ExampleThemeHeadingTypographyTokens : ThemeHeadingTypographyTokensInterface {
+    override val small: TextStyle = TextStyle(
+        fontFamily = robotoFont,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        fontWeight = FontWeight.SemiBold,
+        letterSpacing = 0.sp
+    )
+    override val medium: TextStyle = TextStyle(
+        fontFamily = robotoFont,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.sp
+    )
+    override val large: TextStyle = TextStyle(
+        fontFamily = robotoFont,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.sp
+    )
+}
+
+public class ExampleThemeBodyTypographyTokens : ThemeBodyTypographyTokensInterface {
+    override val small: TextStyle = TextStyle(
+        fontFamily = robotoFont,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        fontWeight = FontWeight.Normal,
+        letterSpacing = 0.sp
+    )
+    override val medium: TextStyle = TextStyle(
+        fontFamily = robotoFont,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        fontWeight = FontWeight.Normal,
+        letterSpacing = 0.sp
+    )
+    override val large: TextStyle = TextStyle(
+        fontFamily = robotoFont,
+        fontSize = 18.sp,
+        lineHeight = 28.sp,
+        fontWeight = FontWeight.Normal,
+        letterSpacing = 0.sp
+    )
 }
