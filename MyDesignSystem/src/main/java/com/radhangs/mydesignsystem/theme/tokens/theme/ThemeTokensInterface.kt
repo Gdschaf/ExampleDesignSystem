@@ -72,3 +72,4 @@ public interface ThemeBodyTypographyTokensInterface {
     public val medium: TextStyle
     public val large: TextStyle
 }
+

@@ -10,30 +10,40 @@ import com.radhangs.mydesignsystem.theme.tokens.theme.ExampleThemeTokens
 import com.radhangs.mydesignsystem.theme.tokens.theme.ThemeTokensInterface
 
 @OptIn(CoreTokensOptIn::class)
-public class ExampleTheme (
-    public val core: CoreTokens,
-    public val theme: ThemeTokensInterface
+public data class ExampleTheme(
+    public val coreTokens: CoreTokens = CoreTokens(),
+    public val themeTokens: ThemeTokensInterface = ExampleThemeTokens(coreTokens.colors)
 )
 
 @OptIn(CoreTokensOptIn::class)
-public val LocalTheme: ProvidableCompositionLocal<ExampleTheme> = staticCompositionLocalOf {
-    val coreTokens = CoreTokens()
-    ExampleTheme(
-        core = coreTokens,
-        theme = ExampleThemeTokens(coreTokens.colors)
-    )
+public object ExampleThemeLocal {
+    public val core: CoreTokens
+        @Composable
+        get() = localCoreTokens.current
+    public val theme: ThemeTokensInterface
+        @Composable
+        get() = localThemeTokens.current
+}
+
+@OptIn(CoreTokensOptIn::class)
+private val localCoreTokens: ProvidableCompositionLocal<CoreTokens> = staticCompositionLocalOf {
+    error("No localCoreTokens provided")
+}
+
+private val localThemeTokens: ProvidableCompositionLocal<ThemeTokensInterface> = staticCompositionLocalOf {
+    error("No localThemeTokens provided")
 }
 
 @OptIn(CoreTokensOptIn::class)
 @Composable
 public fun ExampleTheme(
-    theme: ExampleTheme = ExampleTheme(
-        core = CoreTokens(),
-        theme = ExampleThemeTokens(CoreTokens().colors)
-    ),
+    theme: ExampleTheme = ExampleTheme(),
     content: @Composable () -> Unit
 ) {
-    CompositionLocalProvider(LocalTheme provides theme) {
+    CompositionLocalProvider(
+        localCoreTokens provides theme.coreTokens,
+        localThemeTokens provides  theme.themeTokens
+    ) {
         content()
     }
 }
