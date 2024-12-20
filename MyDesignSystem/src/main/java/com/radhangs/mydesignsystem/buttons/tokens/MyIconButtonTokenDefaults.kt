@@ -1,11 +1,12 @@
 package com.radhangs.mydesignsystem.buttons.tokens
 
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.radhangs.mydesignsystem.theme.tokens.MyBooleanTokenState
 import com.radhangs.mydesignsystem.theme.tokens.MyColorTokenState
 import com.radhangs.mydesignsystem.theme.tokens.MyElevationDimensionTokenState
-import com.radhangs.mydesignsystem.theme.tokens.MyRadiusDimensionTokenState
 import com.radhangs.mydesignsystem.theme.tokens.MySizeDimensionTokenState
 import com.radhangs.mydesignsystem.theme.tokens.theme.ThemeTokensInterface
 
@@ -20,7 +21,7 @@ public class MyIconButtonTokenDefaults(private val themeTokens: ThemeTokensInter
         )
         override var backgroundColor: MyColorTokenState = MyColorTokenState(
             default = themeTokens.colors.primaryBackground,
-            pressed = themeTokens.colors.secondaryBackground,
+            pressed = themeTokens.colors.tertiaryBackground,
             disabled = Color.LightGray /* TODO add disabled colors to theme tokens */
         )
         override var rippleColor: MyColorTokenState? = MyColorTokenState(themeTokens.colors.secondaryBackground)
@@ -36,14 +37,15 @@ public class MyIconButtonTokenDefaults(private val themeTokens: ThemeTokensInter
             default = themeTokens.dimensions.size.xxsmall,
             focused = themeTokens.dimensions.size.xsmall
         )
-        override var borderCornerRadius: MyRadiusDimensionTokenState = MyRadiusDimensionTokenState(themeTokens.dimensions.radius.full)
+        override var borderCornerRadius: CornerSize = themeTokens.dimensions.radius.full
         override var borderDashed: MyBooleanTokenState = MyBooleanTokenState(
             default = false,
             disabled = true
         )
         override var surfaceElevation: MyElevationDimensionTokenState = MyElevationDimensionTokenState(themeTokens.dimensions.elevation.none)
 
-        public var minimumButtonSize: MySizeDimensionTokenState = MySizeDimensionTokenState(40.dp)
-        public var iconSize: MySizeDimensionTokenState = MySizeDimensionTokenState(themeTokens.dimensions.size.large)
+        public var minimumButtonSize: Dp = 40.dp
+        public var iconSize: Dp = themeTokens.dimensions.size.large
+        public var iconPadding: Dp = themeTokens.dimensions.size.medium
     }
 }

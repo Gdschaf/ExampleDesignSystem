@@ -3,6 +3,7 @@ package com.radhangs.mydesignsystem.util
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -22,11 +23,19 @@ public fun Modifier.dashedBorder(
     dashGap: Dp,
     cap: StrokeCap = StrokeCap.Round
 ): Modifier = this.drawWithContent {
-    val outline = shape.createOutline(size, layoutDirection, density = this)
+    val strokeWidth = border.width.toPx()
+    // val insetSize = Size(size.width - strokeWidth, size.height - strokeWidth)
+    val insetSize = Size(size.width, size.height)
+
+    val outline = shape.createOutline(
+        size = insetSize,
+        layoutDirection = layoutDirection,
+        density = this
+    )
 
     val dashedStroke = Stroke(
         cap = cap,
-        width = border.width.toPx(),
+        width = strokeWidth, // border.width.toPx(),
         pathEffect = PathEffect.dashPathEffect(
             intervals = floatArrayOf(dashWidth.toPx(), dashGap.toPx())
         )

@@ -1,5 +1,7 @@
 package com.radhangs.mydesignsystem.theme
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -20,6 +22,7 @@ public object ExampleThemeLocal {
     public val core: CoreTokens
         @Composable
         get() = localCoreTokens.current
+
     public val theme: ThemeTokensInterface
         @Composable
         get() = localThemeTokens.current
@@ -34,15 +37,17 @@ private val localThemeTokens: ProvidableCompositionLocal<ThemeTokensInterface> =
     error("No localThemeTokens provided")
 }
 
-@OptIn(CoreTokensOptIn::class)
+@OptIn(CoreTokensOptIn::class, ExperimentalMaterial3Api::class)
 @Composable
 public fun ExampleTheme(
     theme: ExampleTheme = ExampleTheme(),
     content: @Composable () -> Unit
 ) {
+    val exampleRippleTheme = exampleRippleTheme()
     CompositionLocalProvider(
         localCoreTokens provides theme.coreTokens,
-        localThemeTokens provides  theme.themeTokens
+        localThemeTokens provides  theme.themeTokens,
+        LocalRippleConfiguration provides exampleRippleTheme
     ) {
         content()
     }

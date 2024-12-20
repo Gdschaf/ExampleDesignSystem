@@ -12,7 +12,6 @@ import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -21,7 +20,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.radhangs.mydesignsystem.buttons.tokens.MyButtonSurfaceTokenDefaults
-import com.radhangs.mydesignsystem.theme.ExampleThemeLocal
 import com.radhangs.mydesignsystem.util.dashedBorder
 
 /**
@@ -29,18 +27,18 @@ import com.radhangs.mydesignsystem.util.dashedBorder
  */
 @Composable
 public fun MyButtonSurface(
+    modifier: Modifier,
     onButtonPressed: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    onClickLabel: String? = null,
-    role: Role? = null,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    defaultTokens: MyButtonSurfaceTokenDefaults = MyButtonSurfaceTokenDefaults(ExampleThemeLocal.theme),
+    enabled: Boolean,
+    onClickLabel: String?,
+    role: Role?,
+    interactionSource: MutableInteractionSource,
+    defaultTokens: MyButtonSurfaceTokenDefaults,
     buttonContent: @Composable () -> Unit
 ) {
     val dashedBorder: Boolean = defaultTokens.dimensions.borderDashed.getStateComposable(enabled, interactionSource).value
     val surfaceElevation: Dp = defaultTokens.dimensions.surfaceElevation.getStateComposable(enabled, interactionSource).value
-    val surfaceShape = RoundedCornerShape(defaultTokens.dimensions.borderCornerRadius.getStateComposable(enabled, interactionSource).value)
+    val surfaceShape = RoundedCornerShape(defaultTokens.dimensions.borderCornerRadius)
     val borderStroke = BorderStroke(
         width = defaultTokens.dimensions.borderSize.getStateComposable(enabled, interactionSource).value,
         color = defaultTokens.colors.boarderColor.getStateComposable(enabled, interactionSource).value
@@ -48,17 +46,11 @@ public fun MyButtonSurface(
     val rippleColor: Color? = defaultTokens.colors.rippleColor?.getStateComposable(enabled, interactionSource)?.value
 
     val elevation = LocalAbsoluteTonalElevation.current + surfaceElevation
-    CompositionLocalProvider(LocalAbsoluteTonalElevation provides elevation) {
+    CompositionLocalProvider(
+        LocalAbsoluteTonalElevation provides elevation
+    ) {
         Box(
             modifier = modifier
-                .clickable(
-                    interactionSource = interactionSource,
-                    indication = rippleColor?.let { ripple(color = rippleColor) },
-                    enabled = enabled,
-                    onClickLabel = onClickLabel,
-                    role = role,
-                    onClick = onButtonPressed
-                )
                 .minimumInteractiveComponentSize()
                 .shadow(surfaceElevation, surfaceShape)
                 .run {
@@ -67,9 +59,8 @@ public fun MyButtonSurface(
                             borderStroke,
                             surfaceShape,
                             dashWidth = 4.dp, /* TODO tokenize the dash width and gap */
-                            dashGap = 4.dp
+                            dashGap = 3.dp
                         )
-                        this
                     } else {
                         border(borderStroke, surfaceShape)
                     }
@@ -88,6 +79,15 @@ public fun MyButtonSurface(
                     ).value,
                     shape = surfaceShape
                 )
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = rippleColor?.let { ripple(color = rippleColor) },
+                    enabled = enabled,
+                    onClickLabel = onClickLabel,
+                    role = role,
+                    onClick = onButtonPressed
+                ),
+            propagateMinConstraints = true
         ) {
             buttonContent()
         }

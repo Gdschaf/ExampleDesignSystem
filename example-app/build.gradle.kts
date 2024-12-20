@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.radhangs.exampledesignsystem"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -49,7 +49,7 @@ dependencies {
 
     //compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.activity)
+    implementation(libs.activity.compose)
     implementation(libs.compose.foundation)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material3)
