@@ -58,6 +58,7 @@ public class ExampleThemeTokens(coreColorTokens: CoreTokens.CoreColorTokens) : T
         override var elevation: ThemeElevationTokensInterface = ExampleThemeElevationTokens()
 
         public inner class ExampleThemeSizeTokens : ThemeSizeTokensInterface {
+            override val xxsmall: Dp = 1.dp
             override val xsmall: Dp = 2.dp
             override val small: Dp = 4.dp
             override val medium: Dp = 8.dp

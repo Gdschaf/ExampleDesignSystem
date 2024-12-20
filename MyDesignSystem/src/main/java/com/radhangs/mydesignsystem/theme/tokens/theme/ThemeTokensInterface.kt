@@ -33,6 +33,7 @@ public interface ThemeDimensionTokensInterface {
 }
 
 public interface ThemeSizeTokensInterface {
+    public val xxsmall: Dp
     public val xsmall: Dp
     public val small: Dp
     public val medium: Dp
