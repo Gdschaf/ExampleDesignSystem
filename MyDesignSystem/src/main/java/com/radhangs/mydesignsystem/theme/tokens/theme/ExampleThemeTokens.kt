@@ -17,8 +17,11 @@ import robotoFont
  * shared dimensions and typography tokens and just swap out colors for the different themes.
  */
 @OptIn(CoreTokensOptIn::class)
-public class ExampleThemeTokens(coreColorTokens: CoreTokens.CoreColorTokens) : ThemeTokensInterface {
-    override var colors: ThemeColorTokensInterface = ExampleThemeColorTokensLight(coreColorTokens)
+public class ExampleThemeTokens(
+    coreColorTokens: CoreTokens.CoreColorTokens,
+    darkMode: Boolean = false
+) : ThemeTokensInterface {
+    override var colors: ThemeColorTokensInterface = if (darkMode) ExampleThemeColorTokensDark(coreColorTokens) else ExampleThemeColorTokensLight(coreColorTokens)
     override var dimensions: ThemeDimensionTokensInterface = ExampleThemeDimensionTokens()
     override var typography: ThemeTypographyTokensInterface = ExampleThemeTypographyTokens()
 

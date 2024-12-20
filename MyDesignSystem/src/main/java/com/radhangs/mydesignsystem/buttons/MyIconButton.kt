@@ -1,8 +1,11 @@
 package com.radhangs.mydesignsystem.buttons
 
+import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -64,6 +67,8 @@ public fun MyIconButton(
     }
 }
 
+// region preview
+
 private class MyIconButtonPreviewParametersProvider : PreviewParameterProvider<Boolean> {
     override val values = sequenceOf(
         true,
@@ -71,9 +76,8 @@ private class MyIconButtonPreviewParametersProvider : PreviewParameterProvider<B
     )
 }
 
-@Preview(showBackground = true)
 @Composable
-private fun MyIconButtonPreview(@PreviewParameter(MyIconButtonPreviewParametersProvider::class) enabled: Boolean) {
+private fun MyIconButtonPreview(enabled: Boolean) {
     ExampleTheme {
         MyIconButton(
             modifier = Modifier.padding(8.dp),
@@ -83,3 +87,27 @@ private fun MyIconButtonPreview(@PreviewParameter(MyIconButtonPreviewParametersP
         )
     }
 }
+
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF, // White for light mode
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "Light Mode"
+)
+@Composable
+private fun MyIconButtonPreviewLight(@PreviewParameter(MyIconButtonPreviewParametersProvider::class) enabled: Boolean) {
+    MyIconButtonPreview(enabled)
+}
+
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFF111111, // Dark gray for dark mode
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "Dark Mode"
+)
+@Composable
+private fun MyIconButtonPreviewDark(@PreviewParameter(MyIconButtonPreviewParametersProvider::class) enabled: Boolean) {
+    MyIconButtonPreview(enabled)
+}
+
+// endregion

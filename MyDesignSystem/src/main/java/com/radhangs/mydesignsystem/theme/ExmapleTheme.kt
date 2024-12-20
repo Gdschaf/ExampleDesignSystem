@@ -1,5 +1,6 @@
 package com.radhangs.mydesignsystem.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
@@ -13,8 +14,9 @@ import com.radhangs.mydesignsystem.theme.tokens.theme.ThemeTokensInterface
 
 @OptIn(CoreTokensOptIn::class)
 public data class ExampleTheme(
+    public val darkMode: Boolean = false,
     public val coreTokens: CoreTokens = CoreTokens(),
-    public val themeTokens: ThemeTokensInterface = ExampleThemeTokens(coreTokens.colors)
+    public val themeTokens: ThemeTokensInterface = ExampleThemeTokens(coreTokens.colors, darkMode)
 )
 
 @OptIn(CoreTokensOptIn::class)
@@ -40,7 +42,8 @@ private val localThemeTokens: ProvidableCompositionLocal<ThemeTokensInterface> =
 @OptIn(CoreTokensOptIn::class, ExperimentalMaterial3Api::class)
 @Composable
 public fun ExampleTheme(
-    theme: ExampleTheme = ExampleTheme(),
+    darkMode: Boolean = isSystemInDarkTheme(),
+    theme: ExampleTheme = ExampleTheme(darkMode = darkMode),
     content: @Composable () -> Unit
 ) {
     val exampleRippleTheme = exampleRippleTheme()
