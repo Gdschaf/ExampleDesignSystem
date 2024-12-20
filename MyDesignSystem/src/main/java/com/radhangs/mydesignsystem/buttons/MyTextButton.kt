@@ -1,5 +1,6 @@
 package com.radhangs.mydesignsystem.buttons
 
+import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
@@ -18,6 +19,8 @@ import com.radhangs.mydesignsystem.buttons.tokens.MyButtonSurfaceTokenDefaults
 import com.radhangs.mydesignsystem.buttons.tokens.MyTextButtonTokenDefaults
 import com.radhangs.mydesignsystem.theme.ExampleTheme
 import com.radhangs.mydesignsystem.theme.ExampleThemeLocal
+import com.radhangs.mydesignsystem.util.DarkModePreview
+import com.radhangs.mydesignsystem.util.LightModePreview
 
 /**
  *
@@ -60,16 +63,10 @@ public fun MyTextButton(
     }
 }
 
-private class MyTextButtonPreviewParametersProvider : PreviewParameterProvider<Boolean> {
-    override val values = sequenceOf(
-        true,
-        false
-    )
-}
+// region preview
 
-@Preview(showBackground = true)
 @Composable
-private fun MyTextButtonPreview(@PreviewParameter(MyTextButtonPreviewParametersProvider::class) enabled: Boolean) {
+private fun MyTextButtonPreview(enabled: Boolean) {
     ExampleTheme {
         MyTextButton(
             text = "Text Button",
@@ -79,3 +76,24 @@ private fun MyTextButtonPreview(@PreviewParameter(MyTextButtonPreviewParametersP
         )
     }
 }
+
+@LightModePreview
+@Composable
+private fun MyTextButtonPreviewLight(@PreviewParameter(MyTextButtonPreviewParametersProvider::class) enabled: Boolean) {
+    MyTextButtonPreview(enabled)
+}
+
+@DarkModePreview
+@Composable
+private fun MyTextButtonPreviewDark(@PreviewParameter(MyTextButtonPreviewParametersProvider::class) enabled: Boolean) {
+    MyTextButtonPreview(enabled)
+}
+
+private class MyTextButtonPreviewParametersProvider : PreviewParameterProvider<Boolean> {
+    override val values = sequenceOf(
+        true,
+        false
+    )
+}
+
+// endregion

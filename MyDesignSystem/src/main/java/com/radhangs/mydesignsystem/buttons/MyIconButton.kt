@@ -23,6 +23,8 @@ import com.radhangs.mydesignsystem.icons.DesignSystemIcon
 import com.radhangs.mydesignsystem.icons.DesignSystemIcons
 import com.radhangs.mydesignsystem.theme.ExampleTheme
 import com.radhangs.mydesignsystem.theme.ExampleThemeLocal
+import com.radhangs.mydesignsystem.util.DarkModePreview
+import com.radhangs.mydesignsystem.util.LightModePreview
 
 /**
  *
@@ -69,13 +71,6 @@ public fun MyIconButton(
 
 // region preview
 
-private class MyIconButtonPreviewParametersProvider : PreviewParameterProvider<Boolean> {
-    override val values = sequenceOf(
-        true,
-        false
-    )
-}
-
 @Composable
 private fun MyIconButtonPreview(enabled: Boolean) {
     ExampleTheme {
@@ -88,26 +83,23 @@ private fun MyIconButtonPreview(enabled: Boolean) {
     }
 }
 
-@Preview(
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF, // White for light mode
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "Light Mode"
-)
+@LightModePreview
 @Composable
 private fun MyIconButtonPreviewLight(@PreviewParameter(MyIconButtonPreviewParametersProvider::class) enabled: Boolean) {
     MyIconButtonPreview(enabled)
 }
 
-@Preview(
-    showBackground = true,
-    backgroundColor = 0xFF111111, // Dark gray for dark mode
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "Dark Mode"
-)
+@DarkModePreview
 @Composable
 private fun MyIconButtonPreviewDark(@PreviewParameter(MyIconButtonPreviewParametersProvider::class) enabled: Boolean) {
     MyIconButtonPreview(enabled)
+}
+
+private class MyIconButtonPreviewParametersProvider : PreviewParameterProvider<Boolean> {
+    override val values = sequenceOf(
+        true,
+        false
+    )
 }
 
 // endregion
