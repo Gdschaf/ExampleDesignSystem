@@ -31,4 +31,5 @@ public object DesignSystemIcons {
         public data object Filled : DesignSystemIcon(R.drawable.ic_image_filled)
         public data object Outlined : DesignSystemIcon(R.drawable.ic_image_outlined)
     }
+    public data object Menu : DesignSystemIcon(R.drawable.ic_menu)
 }
