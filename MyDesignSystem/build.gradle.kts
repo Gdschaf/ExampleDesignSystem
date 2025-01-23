@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.google.fonts)
     implementation(libs.compose.ui.tooling)
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
 

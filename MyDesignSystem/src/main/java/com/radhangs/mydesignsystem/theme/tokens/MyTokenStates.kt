@@ -22,11 +22,13 @@ internal interface MyTokenState<T> {
     var focused: T?
     var pressed: T?
     var disabled: T?
+    var selected: T?
 
     @Composable
     fun getCurrentState(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean
     ): T {
         val interactions = remember { mutableStateListOf<Interaction>() }
         LaunchedEffect(interactionSource) {
@@ -59,20 +61,26 @@ internal interface MyTokenState<T> {
 
         var state: T = default
         if (enabled) {
-            when (interactions.lastOrNull()) {
-                is PressInteraction.Press -> {
-                    pressed?.let {
-                        state = it
-                    }
+            if (selected) {
+                this.selected?.let {
+                    state = it
                 }
-                is FocusInteraction.Focus -> {
-                    focused?.let {
-                        state = it
+            } else {
+                when (interactions.lastOrNull()) {
+                    is PressInteraction.Press -> {
+                        pressed?.let {
+                            state = it
+                        }
                     }
-                }
-                is HoverInteraction.Enter -> {
-                    hovered?.let {
-                        state = it
+                    is FocusInteraction.Focus -> {
+                        focused?.let {
+                            state = it
+                        }
+                    }
+                    is HoverInteraction.Enter -> {
+                        hovered?.let {
+                            state = it
+                        }
                     }
                 }
             }
@@ -95,14 +103,16 @@ public data class MyColorTokenState(
     override var hovered: Color? = null,
     override var focused: Color? = null,
     override var pressed: Color? = null,
-    override var disabled: Color? = null
+    override var disabled: Color? = null,
+    override var selected: Color? = null
 ) : MyTokenState<Color> {
     @Composable
     public fun getStateComposable(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean = false
     ): State<Color> {
-        return rememberUpdatedState(getCurrentState(enabled, interactionSource))
+        return rememberUpdatedState(getCurrentState(enabled, interactionSource, selected))
     }
 }
 
@@ -113,14 +123,16 @@ public data class MySizeDimensionTokenState(
     override var hovered: Dp? = null,
     override var focused: Dp? = null,
     override var pressed: Dp? = null,
-    override var disabled: Dp? = null
+    override var disabled: Dp? = null,
+    override var selected: Dp? = null
 ) : MyTokenState<Dp>, MyStateDimension {
     @Composable
     public fun getStateComposable(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean = false
     ): State<Dp> {
-        return rememberUpdatedState(getCurrentState(enabled, interactionSource))
+        return rememberUpdatedState(getCurrentState(enabled, interactionSource, selected))
     }
 }
 
@@ -129,14 +141,16 @@ public data class MyRadiusDimensionTokenState(
     override var hovered: CornerSize? = null,
     override var focused: CornerSize? = null,
     override var pressed: CornerSize? = null,
-    override var disabled: CornerSize? = null
+    override var disabled: CornerSize? = null,
+    override var selected: CornerSize? = null
 ) : MyTokenState<CornerSize>, MyStateDimension {
     @Composable
     public fun getStateComposable(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean = false
     ): State<CornerSize> {
-        return rememberUpdatedState(getCurrentState(enabled, interactionSource))
+        return rememberUpdatedState(getCurrentState(enabled, interactionSource, selected))
     }
 }
 
@@ -145,14 +159,16 @@ public data class MyElevationDimensionTokenState(
     override var hovered: Dp? = null,
     override var focused: Dp? = null,
     override var pressed: Dp? = null,
-    override var disabled: Dp? = null
+    override var disabled: Dp? = null,
+    override var selected: Dp? = null
 ) : MyTokenState<Dp>, MyStateDimension {
     @Composable
     public fun getStateComposable(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean = false
     ): State<Dp> {
-        val stateValue = getCurrentState(enabled, interactionSource)
+        val stateValue = getCurrentState(enabled, interactionSource, selected)
         /* TODO add elevation animation here */
         return rememberUpdatedState(stateValue)
     }
@@ -163,14 +179,16 @@ public data class MyTypographyTokenState(
     override var hovered: TextStyle? = null,
     override var focused: TextStyle? = null,
     override var pressed: TextStyle? = null,
-    override var disabled: TextStyle? = null
+    override var disabled: TextStyle? = null,
+    override var selected: TextStyle? = null
 ) : MyTokenState<TextStyle> {
     @Composable
     public fun getStateComposable(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean = false
     ): State<TextStyle> {
-        return rememberUpdatedState(getCurrentState(enabled, interactionSource))
+        return rememberUpdatedState(getCurrentState(enabled, interactionSource, selected))
     }
 }
 
@@ -179,13 +197,15 @@ public data class MyBooleanTokenState(
     override var hovered: Boolean? = null,
     override var focused: Boolean? = null,
     override var pressed: Boolean? = null,
-    override var disabled: Boolean? = null
+    override var disabled: Boolean? = null,
+    override var selected: Boolean? = null
 ) : MyTokenState<Boolean> {
     @Composable
     public fun getStateComposable(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
+        selected: Boolean = false
     ): State<Boolean> {
-        return rememberUpdatedState(getCurrentState(enabled, interactionSource))
+        return rememberUpdatedState(getCurrentState(enabled, interactionSource, selected))
     }
 }

@@ -1,4 +1,4 @@
-package com.radhangs.mydesignsystem.buttons.tokens
+package com.radhangs.mydesignsystem.components.buttons.tokens
 
 import androidx.compose.foundation.shape.CornerSize
 import com.radhangs.mydesignsystem.theme.tokens.MyBooleanTokenState

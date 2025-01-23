@@ -1,4 +1,4 @@
-package com.radhangs.mydesignsystem.buttons
+package com.radhangs.mydesignsystem.components.buttons
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.radhangs.mydesignsystem.buttons.tokens.MyButtonSurfaceTokenDefaults
+import com.radhangs.mydesignsystem.components.buttons.tokens.MyButtonSurfaceTokenDefaults
 import com.radhangs.mydesignsystem.util.dashedBorder
 
 /**

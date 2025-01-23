@@ -10,6 +10,11 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.semantics.CollectionInfo
+import androidx.compose.ui.semantics.CollectionItemInfo
+import androidx.compose.ui.semantics.collectionInfo
+import androidx.compose.ui.semantics.collectionItemInfo
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 
 /**
@@ -51,3 +56,60 @@ public fun Modifier.dashedBorder(
         brush = border.brush
     )
 }
+
+/**
+ * Helper modifier to assign semantics collection info to a vertical list of components
+ *
+ * @param count The number of items in the collection.
+ */
+public fun Modifier.verticalCollectionInfo(
+    count: Int
+): Modifier = this.semantics {
+    collectionInfo = CollectionInfo(rowCount = count, columnCount = 1)
+}
+
+/**
+ * Helper modifier to assign the collection item info semantics to each element in a vertical
+ * collection of items.
+ *
+ * @param index The index of the element in the list of items
+ */
+public fun Modifier.verticalCollectionItemInfo(
+    index: Int
+): Modifier = this.semantics {
+    collectionItemInfo = CollectionItemInfo(
+        rowIndex = index,
+        rowSpan = 1,
+        columnIndex = 0,
+        columnSpan = 1
+    )
+}
+
+/**
+ * Helper modifier to assign semantics collection info to a horizontal list of components
+ *
+ * @param count The number of items in the collection.
+ */
+public fun Modifier.horizontalCollectionInfo(
+    count: Int
+): Modifier = this.semantics {
+    collectionInfo = CollectionInfo(rowCount = 1, columnCount = count)
+}
+
+/**
+ * Helper modifier to assign the collection item info semantics to each element in a horizontal
+ * collection of items.
+ *
+ * @param index The index of the element in the list of items
+ */
+public fun Modifier.horizontalCollectionItemInfo(
+    index: Int
+): Modifier = this.semantics {
+    collectionItemInfo = CollectionItemInfo(
+        rowIndex = 0,
+        rowSpan = 1,
+        columnIndex = index,
+        columnSpan = 1
+    )
+}
+

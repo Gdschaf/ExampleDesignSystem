@@ -9,6 +9,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 nodeGradle = "7.1.0"
 composeActivity = "1.9.3"
+coil = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -18,6 +19,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.12.01" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }

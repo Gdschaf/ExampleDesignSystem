@@ -31,5 +31,11 @@ public object DesignSystemIcons {
         public data object Filled : DesignSystemIcon(R.drawable.ic_image_filled)
         public data object Outlined : DesignSystemIcon(R.drawable.ic_image_outlined)
     }
+    public data object BrokenImage : DesignSystemIcon(R.drawable.ic_broken_image)
     public data object Menu : DesignSystemIcon(R.drawable.ic_menu)
+    public data object Check : DesignSystemIcon(R.drawable.ic_check)
+    public object CheckCircle {
+        public data object Filled : DesignSystemIcon(R.drawable.ic_check_circle_filled)
+        public data object Outlined : DesignSystemIcon(R.drawable.ic_check_circle_outlined)
+    }
 }

@@ -1,4 +1,4 @@
-package com.radhangs.mydesignsystem.buttons
+package com.radhangs.mydesignsystem.components.buttons
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -13,8 +13,8 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import com.radhangs.mydesignsystem.buttons.tokens.MyButtonSurfaceTokenDefaults
-import com.radhangs.mydesignsystem.buttons.tokens.MyTextButtonTokenDefaults
+import com.radhangs.mydesignsystem.components.buttons.tokens.MyButtonSurfaceTokenDefaults
+import com.radhangs.mydesignsystem.components.buttons.tokens.MyTextButtonTokenDefaults
 import com.radhangs.mydesignsystem.theme.ExampleTheme
 import com.radhangs.mydesignsystem.theme.ExampleThemeLocal
 import com.radhangs.mydesignsystem.util.DarkModePreview
@@ -64,7 +64,9 @@ public fun MyTextButton(
 // region preview
 
 @Composable
-private fun MyTextButtonPreview(enabled: Boolean) {
+@LightModePreview
+@DarkModePreview
+private fun MyTextButtonPreview(@PreviewParameter(MyTextButtonPreviewParametersProvider::class) enabled: Boolean) {
     ExampleTheme {
         MyTextButton(
             text = "Text Button",
@@ -73,18 +75,6 @@ private fun MyTextButtonPreview(enabled: Boolean) {
             onButtonPressed = { }
         )
     }
-}
-
-@LightModePreview
-@Composable
-private fun MyTextButtonPreviewLight(@PreviewParameter(MyTextButtonPreviewParametersProvider::class) enabled: Boolean) {
-    MyTextButtonPreview(enabled)
-}
-
-@DarkModePreview
-@Composable
-private fun MyTextButtonPreviewDark(@PreviewParameter(MyTextButtonPreviewParametersProvider::class) enabled: Boolean) {
-    MyTextButtonPreview(enabled)
 }
 
 private class MyTextButtonPreviewParametersProvider : PreviewParameterProvider<Boolean> {
