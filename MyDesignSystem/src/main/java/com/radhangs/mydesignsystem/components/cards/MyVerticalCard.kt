@@ -31,6 +31,18 @@ import com.radhangs.mydesignsystem.util.MyComponentMedia
 import com.radhangs.mydesignsystem.util.MyUrlMedia
 import com.radhangs.mydesignsystem.util.toDp
 
+/**
+ * A composable function that creates a vertical card with customizable content and appearance.
+ *
+ * @param title The title text to be displayed on the card.
+ * @param cardMedia A [MyComponentMedia] instance representing the media content to be displayed on the card.
+ * @param modifier A [Modifier] used to adjust the layout or behavior of the card. Defaults to [Modifier].
+ * @param description An optional description text to be displayed on the card. Defaults to `null`.
+ * @param interactionSource A [MutableInteractionSource] to track interaction events for the card.
+ * Defaults to a new instance of [MutableInteractionSource].
+ * @param defaultTokens An instance of [MyVerticalCardTokenDefaults] that defines default styling and configuration for the card.
+ * Defaults to a [MyVerticalCardTokenDefaults] instance with the current theme.
+ */
 @Composable
 public fun MyVerticalCard(
     title: String,

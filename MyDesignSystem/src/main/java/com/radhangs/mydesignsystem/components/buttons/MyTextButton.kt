@@ -21,7 +21,14 @@ import com.radhangs.mydesignsystem.util.DarkModePreview
 import com.radhangs.mydesignsystem.util.LightModePreview
 
 /**
+ * A composable function that creates a customizable text button.
  *
+ * @param text The text to be displayed on the button.
+ * @param onButtonPressed A lambda function to be invoked when the button is pressed.
+ * @param modifier A [Modifier] for this button. Default is [Modifier].
+ * @param enabled A boolean to enable or disable the button. Default is true.
+ * @param interactionSource A [MutableInteractionSource] to track interaction events. Default is a new instance of [MutableInteractionSource].
+ * @param defaultTokens A [MyTextButtonTokenDefaults] instance to provide default styling tokens. Default is [MyTextButtonTokenDefaults] with the current theme.
  */
 @Composable
 public fun MyTextButton(

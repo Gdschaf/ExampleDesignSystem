@@ -1,6 +1,5 @@
 package com.radhangs.mydesignsystem.components.menus
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,7 +25,16 @@ import com.radhangs.mydesignsystem.util.DarkModePreview
 import com.radhangs.mydesignsystem.util.LightModePreview
 
 /**
+ * A composable function that creates a menu item with customizable text, icon, and appearance.
  *
+ * @param text The text to be displayed on the menu item.
+ * @param modifier A [Modifier] used to adjust the layout or behavior of the menu item. Defaults to [Modifier].
+ * @param icon An optional [DesignSystemIcon] to be displayed alongside the text. Defaults to `null`.
+ * @param enabled A [Boolean] indicating whether the menu item is enabled. Defaults to `true`.
+ * @param selected A [Boolean] indicating whether the menu item is selected. Defaults to `false`.
+ * @param onItemPressed An optional lambda function invoked when the menu item is pressed. Defaults to `null`.
+ * @param defaultTokens An instance of [MyMenuItemTokenDefaults] that defines default styling and configuration for the menu item.
+ * Defaults to a [MyMenuItemTokenDefaults] instance with the current theme.
  */
 @Composable
 internal fun MyMenuItem(
@@ -45,11 +53,6 @@ internal fun MyMenuItem(
         width = defaultTokens.dimensions.boarderWidth.getStateComposable(enabled, interactionSource, selected).value,
         color = defaultTokens.colors.boarderColor.getStateComposable(enabled, interactionSource, selected).value
     )
-    val boarderWidth = defaultTokens.dimensions.boarderWidth.getStateComposable(enabled, interactionSource, selected).value
-    Log.e("GARRETT", "Boarder Width: $boarderWidth")
-    Log.e("GARRETT", "Boarder Width Selected: ${defaultTokens.dimensions.boarderWidth.selected}")
-    Log.e("GARRETT", "Boarder Width Default: ${defaultTokens.dimensions.boarderWidth.default}")
-    Log.e("GARRETT", "Boarder Width Focused: ${defaultTokens.dimensions.boarderWidth.focused}")
     Row(
         modifier = modifier
             .run {

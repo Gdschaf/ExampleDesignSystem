@@ -23,7 +23,18 @@ import com.radhangs.mydesignsystem.util.DarkModePreview
 import com.radhangs.mydesignsystem.util.LightModePreview
 
 /**
+ * A composable function that creates an icon button with customizable behavior and appearance.
  *
+ * This function internally uses [MyButtonSurface] to provide the button's surface and styling.
+ *
+ * @param designSystemIcon A [DesignSystemIcon] representing the icon to be displayed inside the button.
+ * @param onButtonPressed A lambda function invoked when the button is pressed.
+ * @param modifier A [Modifier] used to adjust the layout or behavior of the icon button. Defaults to [Modifier].
+ * @param enabled A [Boolean] indicating whether the button is enabled or not. Defaults to `true`.
+ * @param interactionSource A [MutableInteractionSource] to track interaction events (e.g., press, hover, focus)
+ * for the button. Defaults to a new instance of [MutableInteractionSource].
+ * @param defaultTokens An instance of [MyIconButtonTokenDefaults] that defines default styling and configuration
+ * for the icon button. Defaults to a [MyIconButtonTokenDefaults] instance with the current theme.
  */
 @Composable
 public fun MyIconButton(

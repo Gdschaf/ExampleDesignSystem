@@ -23,7 +23,16 @@ import com.radhangs.mydesignsystem.components.buttons.tokens.MyButtonSurfaceToke
 import com.radhangs.mydesignsystem.util.dashedBorder
 
 /**
+ * A composable function that provides a surface for a button with customizable behavior and appearance.
  *
+ * @param modifier A [Modifier] used to adjust the layout or behavior of the button surface.
+ * @param onButtonPressed A lambda function invoked when the button is pressed.
+ * @param enabled A [Boolean] indicating whether the button is enabled or not.
+ * @param onClickLabel An optional [String] describing the action for accessibility purposes. Useful for screen readers.
+ * @param role An optional [Role] defining the semantic role of the button (e.g., `Button`, `Checkbox`).
+ * @param interactionSource A [MutableInteractionSource] to track interaction events (e.g., press, hover, focus) for the button.
+ * @param defaultTokens An instance of [MyButtonSurfaceTokenDefaults] that defines default styling and configuration for the button.
+ * @param buttonContent A composable lambda providing the content to be displayed within the button.
  */
 @Composable
 public fun MyButtonSurface(
