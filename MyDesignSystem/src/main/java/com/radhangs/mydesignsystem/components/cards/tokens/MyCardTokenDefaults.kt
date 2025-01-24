@@ -25,7 +25,9 @@ public class MyCardTokenDefaults(private val themeTokens: ThemeTokensInterface) 
             default = themeTokens.colors.primaryBackground,
             pressed = themeTokens.colors.tertiaryBackground
         )
-        override var rippleColor: MyColorTokenState? = MyColorTokenState(themeTokens.colors.secondaryBackground)
+        override var rippleColor: MyColorTokenState? = MyColorTokenState(
+            default = themeTokens.colors.secondaryBackground
+        )
     }
 
     public inner class MyCardDimensionTokenDefaults: MyButtonSurfaceTokenDefaults.MyButtonSurfaceDimensionTokenInterface {
